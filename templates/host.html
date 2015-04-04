@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block define %}
+<section id="host-screen col-md-12 col-lg-12" style="margin: 0;height: 300px;">
+    <img src="/img/login/imac.png" style="margin-left:28%;position: absolute;z-index: 0;max-height: 400px;">
+    <div class="text-center" style="margin-left:28%;padding-top: 80px;margin-top: 1%;
+    height: 270px;width: 480px;color: #ffffff;background-color: #1abc9c;border-radius: 10px;">
+        <h2>Welcome</h2>
+    </div>
+</section>
+<div class="row" style="margin-left: 1px;margin-right: 1px;margin-top: 110px">
+  <div class="col-lg-4 col-sm-12 col-xs-12">
+    <div class="thumbnail">
+      <div class="caption">
+        <h4>Python</h4>
+        <p>python 后台和web开发技术分享</p>
+        <p class="text-right">
+            <a href="blog_list?type_name=python" class="btn btn-primary" role="button">Let's Go</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-sm-12 col-xs-12">
+    <div class="thumbnail">
+      <div class="caption">
+        <h4>Javascript</h4>
+        <p>Js 网页开发分享</p>
+        <p class="text-right"><a href="blog_list?type_name=js" class="btn btn-primary" role="button">Let's Go</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-sm-12 col-xs-12">
+    <div class="thumbnail">
+      <div class="caption">
+        <h4>About Life</h4>
+        <p>生活琐事，心路历程</p>
+        <p class="text-right"><a href="blog_list?type_name=life" class="btn btn-primary" role="button">Let's Go</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+      $('#host').addClass('li-active');
+      $('#host_1').addClass('active')
+      $('head').append("<meta name='keywords' content='shadowwood, 博客'>");
+  })
+</script>
+{% endblock %}
+</body>
+</html>

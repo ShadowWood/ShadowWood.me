@@ -1,0 +1,142 @@
+th{
+    text-align: center;
+}
+.btn-mine{
+    color: #2ecc71;
+    background-color: #ffffff;
+    border:1px solid #1abc9c;
+    border-radius: 0;
+}
+.btn-mine:hover,
+.btn-mine:focus,
+.btn-mine:active,
+.btn-mine.active,
+.open > .dropdown-toggle.mine {
+  color: #ffffff;
+  background-color:#1abc9c;
+
+  border-color: #2ecc71;
+}
+.navbar-mine{
+    background-color: #999999;
+    border-color: #ccc;
+    border-radius: 0;
+}
+.navbar-default
+.navbar-brand {
+color: #000000;
+    font-size: 34px;
+}
+
+.header {
+background: #222222;
+background-repeat: no-repeat;
+background-position: center 0;
+background-size: cover;
+padding: 138px 0 0;
+text-align: center;
+min-height: 400px;
+position: relative;
+}
+.btn-my-sm{
+    height: 60px;
+    width:  60px;
+    line-height: 60px;
+}
+
+
+
+.background-mine{
+    background-color: #1abc9c;
+    background-size: cover;
+}
+.module{
+    width: 400px;
+    height: 400px;
+    margin: 10px;
+    font-size: 16px;
+    border-color: #1abc9c;
+    border-width: 1px;
+}
+
+.p-head{
+    background-color: #1abc9c;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 6px;
+}
+pre code{
+    padding: 0;
+    font-size: 16px;
+    color: inherit;
+    white-space: pre-wrap;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+.article-mine{
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 2%;
+}
+@media (max-width: 1400px) {
+    .article-mine{
+        padding-left: 12%;
+        padding-right: 12%;
+        padding-top: 2%;
+    }
+    
+}
+
+@media (min-width: 800px) {
+    .list-width-mine{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+}
+
+@media (min-width: 1100px) {
+    .demo-sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10000;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        overflow: auto;
+        font-size: 16px;
+        line-height: 1.714;
+        list-style-type: none;
+        background-color: #2c3e50;
+    }
+    #nav_mine>.li-active>a{
+    background-color: #1abc9c;
+    color: #ffffff;
+    border-radius: 0;
+    }
+
+   #nav_mine>li:hover {
+       background-color: #27ae60;
+       color: #ffffff;
+       border-radius: 0;
+   }
+   #phone_nav {
+        display: none;
+    }
+}
+
+@media (max-width: 800px) {
+    .img-smscreen{
+        display: none;
+    }
+    .demo-sidebar{
+        display: none;
+    }
+    #host-screen{
+        display: none;
+    }
+    #nav_mine{
+       display: none;
+   }
+}

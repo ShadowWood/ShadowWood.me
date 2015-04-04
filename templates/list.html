@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block define %}
+   {% if type %}
+    <script>
+       $(document).ready(function(){
+           var type='{{ type }}';
+           if(type=='python'){
+               $('#python').addClass('li-active');
+               $('#python_1').addClass('active');
+           }
+           else if(type=='js'){
+               $('#js').addClass('li-active');
+               $('#js_1').addClass('active');
+           }
+           else if(type=='life'){
+               $('#life').addClass('li-active');
+               $('#life_1').addClass('active');
+
+           }
+       })
+    </script>
+{% endif %}
+   <div class="col-md-8 col-lg-8 list-width-mine" style="margin-left: 18%;">
+{% for item in items %}
+     <div class="col-md-12 col-lg-12" style="margin-top: 3%">
+        <h6 style="border-bottom: 2px solid #7f8c8d;padding-bottom: 2%">
+          <a href="blogs?article_id={{  item.id }}" style="font-size: 26px;color: #1abc9c">{{ item.title }}</a>
+        </h6>
+        <p>
+            {{ item.introduction }}
+        </p>
+        <p style="color: #bdc3c7;">
+           date: {{ item.date|date:"Y-m-d" }} | By ShadowWood
+        </p>
+     </div>
+{% endfor %}
+   </div>
+   {% if items.has_previous or items.has_next %}
+  <div class="text-center col-md-12 col-lg-12 col-xs-12">
+      <div class="pagination">
+          <ul>
+              {% if items.has_previous %}
+            <li><a class="btn btn-default previous" href="?type_name={{ type }}&page={{ items.previous_page_number }}">上一页</a></li>
+             {% endif %}
+             {% for page in items.paginator.page_range %}
+               {% if page == items.number %}
+            <li class="active"><a href="?type_name={{ type }}&page={{ page }}">{{ page }}</a></li>
+               {% else %}
+            <li><a href="?type_name={{ type }}&page={{ page }}">{{ page }}</a></li>
+               {% endif %}
+            {% endfor %}
+            {% if items.has_next %}
+             <li><a class="btn btn-default next" href="?type_name={{ type }}&page={{ items.next_page_number }}">下一页</a></li>
+
+            {% endif %}
+          </ul>
+      </div>
+  </div>
+    {% endif %}
+{% endblock %}

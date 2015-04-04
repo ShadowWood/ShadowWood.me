@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block define %}
+<style type="text/css">
+p{text-indent:2em;
+  font-size: 15px;}
+br{text-indent:2em}
+</style>
+<div class="article-mine">
+ <div class="panel panel-success" style="padding-left: 10%;padding-right: 10%;border: 2px solid #1abc9c">
+     {{ item | safe}}
+ </div>
+</div>
+    {% if article %}
+     <script>
+       $(document).ready(function(){
+          $('head').append("<meta name='keywords' content='{{ article.keywords }}'>");
+          $('#{{ article.type.type_name }}').addClass('li-active');
+       });
+     </script>
+    {% endif %}
+{% endblock %}
