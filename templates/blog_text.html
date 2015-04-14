@@ -5,8 +5,14 @@ p{text-indent:2em;
   font-size: 15px;}
 br{text-indent:2em}
 </style>
-<div class="article-mine">
- <div class="panel panel-success" style="padding-left: 10%;padding-right: 10%;border: 2px solid #1abc9c">
+<div class="article-mine" style="border-bottom: 1px solid #bdc3c7;padding-bottom: 2%">
+ <div class="panel my-panel" style="padding-left: 10%;padding-right: 10%;">
+     <h3 class="text-center">{{ article.title }}</h3>
+     <p class="text-right" style="color: #bdc3c7;">
+         keywords: {{ article.keywords }}
+         <br/>
+         {{ article.date }}
+     </p>
      {{ item | safe}}
  </div>
 </div>
@@ -15,7 +21,65 @@ br{text-indent:2em}
        $(document).ready(function(){
           $('head').append("<meta name='keywords' content='{{ article.keywords }}'>");
           $('#{{ article.type.type_name }}').addClass('li-active');
+          baidu_share("ShadowWood的博客－－{{ article.title }}", "ShadowWood, 博客, {{ article.keywords }}");
        });
      </script>
     {% endif %}
+{#{% load comments %}#}
+{#{% block discuss %}#}
+{#   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0 15% 0 15%;margin-top: 2%">#}
+{#    <h4 style="text-align: center">Comments</h4>#}
+{#    <div class="panel my-panel">#}
+{#        <div class="panel-body">#}
+{#            <p>#}
+{#                评论者#}
+{#                <span style="margin-left: 2%;color: #bdc3c7">{{ article.date }}</span>#}
+{#            </p>#}
+{#            <p>#}
+{#                这是个测试评论！！！！！#}
+{#            </p>#}
+{#            <a class="" href="#" style="float: right;font-size: 14px;">回复</a>#}
+{#        </div>#}
+{#        <div class="panel-body" style="border-top: 1px solid #1abc9c">#}
+{#            <p>#}
+{#                评论者#}
+{#                <span style="margin-left: 2%;color: #bdc3c7">{{ article.date }}</span>#}
+{#            </p>#}
+{#            <p>#}
+{#                这是个测试评论！！！！！#}
+{#            </p>#}
+{#            <a class="" href="#" style="float: right;font-size: 14px;">回复</a>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="panel my-panel">#}
+{#        <div class="panel-body">#}
+{#            <p>#}
+{#                评论者#}
+{#                <span style="margin-left: 2%;color: #bdc3c7">{{ article.date }}</span>#}
+{#            </p>#}
+{#            <p>#}
+{#                这是个测试评论！！！！！#}
+{#            </p>#}
+{#            <a class="" href="#" style="float: right">回复</a>#}
+{#        </div>#}
+{#    </div>#}
+{#    <div class="panel my-panel">#}
+{#        <div class="panel-body">#}
+{#            <p>#}
+{#                评论者#}
+{#                <span style="margin-left: 2%;color: #bdc3c7">{{ article.date }}</span>#}
+{#            </p>#}
+{#            <p>#}
+{#                这是个测试评论！！！！！#}
+{#            </p>#}
+{#            <a class="" href="#" style="float: right">回复</a>#}
+{#        </div>#}
+{#    </div>#}
+{#    <button class="btn btn-primary" style="float: right">发表新的评论</button>#}
+{#    <div >#}
+{##}
+{#    </div>#}
+{#   </div>#}
+{##}
+{#{% endblock %}#}
 {% endblock %}

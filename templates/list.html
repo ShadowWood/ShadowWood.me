@@ -1,35 +1,17 @@
 {% extends 'base.html' %}
 {% block define %}
-   {% if type %}
-    <script>
-       $(document).ready(function(){
-           var type='{{ type }}';
-           if(type=='python'){
-               $('#python').addClass('li-active');
-               $('#python_1').addClass('active');
-           }
-           else if(type=='js'){
-               $('#js').addClass('li-active');
-               $('#js_1').addClass('active');
-           }
-           else if(type=='life'){
-               $('#life').addClass('li-active');
-               $('#life_1').addClass('active');
-
-           }
-       })
-    </script>
-{% endif %}
-   <div class="col-md-8 col-lg-8 list-width-mine" style="margin-left: 18%;">
+   <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12 list-width-mine" style="margin-left: 10%;">
 {% for item in items %}
-     <div class="col-md-12 col-lg-12" style="margin-top: 3%">
-        <h6 style="border-bottom: 2px solid #7f8c8d;padding-bottom: 2%">
-          <a href="blogs?article_id={{  item.id }}" style="font-size: 26px;color: #1abc9c">{{ item.title }}</a>
-        </h6>
-        <p>
+     <div class="col-md-12 col-lg-12 my-panel" style="margin-top: 3%;">
+        <a href="blogs?article_id={{  item.id }}" class="text-center">
+            <h6 class="my-heading" style="font-size: 20px;">{{ item.title }}</h6>
+        </a>
+        <p style="font-size: 16px;">
             {{ item.introduction }}
         </p>
-        <p style="color: #bdc3c7;">
+        <p style="color: #bdc3c7;text-align: right">
+           read:{{ item.read_numbers }}
+           <br/>
            date: {{ item.date|date:"Y-m-d" }} | By ShadowWood
         </p>
      </div>
@@ -57,4 +39,13 @@
       </div>
   </div>
     {% endif %}
+  {% if type %}
+    <script>
+       $(document).ready(function(){
+           $('#{{ type }}').addClass('li-active');
+           $('#{{ type }}_1').addClass('active');
+           baidu_share("ShadowWood的博客－－文章分享", "ShadowWood, 博客, {{ type }}");
+       })
+    </script>
+  {% endif %}
 {% endblock %}

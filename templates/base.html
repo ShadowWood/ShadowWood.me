@@ -5,13 +5,15 @@
     <meta name="baidu-site-verification" content="r9nm81dHSe" />
     <title>ShadowWood</title>
     <link rel="icon" href="/img/1.ico" type="image/x-icon" />
-    <link href="/css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/vendor/bootstrap.min.css" rel="stylesheet"/>
+{#    <link href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"/>#}
     <link href="/css/buttons.css" rel="stylesheet">
     <link href="/css/flat-ui.min.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
     <script src="/js/vendor/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/jquery/1.11.py2/jquery.min.js"></script>
 </head>
-<body style="font-family: Lato, microsoft YaHei, Helvetica, Arial, sans-serif;background: #ecf0f1">
+<body id="blog_body" style="font-family: Lato, microsoft YaHei, Helvetica, Arial, sans-serif;background: #eff0f2">
 <nav id="phone_nav" class="navbar navbar-inverse col-md-12 col-sm-12 col-xs-12" role="navigation">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
@@ -24,28 +26,35 @@
       <li id="host_1"><a href="/">首页</a></li>
       <li id="python_1"><a href="blog_list?type_name=python">Python</a></li>
       <li id="js_1"><a href="blog_list?type_name=js">Javascript</a></li>
+      <li id="linux_1"><a href="blog_list?type_name=linux">Linux</a></li>
+      <li id="html_css_1"><a href="blog_list?type_name=html_css">Html/css</a></li>
+      <li id="mac_os_1"><a href="blog_list?type_name=mac_os">Mac os</a></li>
       <li id="life_1"><a href="blog_list?type_name=life">About Life</a></li>
       <li id="about_me_1"><a href="about_me">关于作者</a></li>
     </ul>
   </div><!-- /.navbar-collapse -->
 </nav>
-<ul id="nav_mine" class="demo-sidebar nav nav-pills col-lg-2 nav-stacked text-center" style="max-width: 230px;background-color: #2c3e50;">
-{#      <img src="/img/icons/png/Clipboard.png">#}
+<ul id="nav_mine" class="demo-sidebar nav nav-pills col-lg-2 nav-stacked text-center" style="background-color: #2c3e50;">
       <img src="/img/login/2.pic.jpg" class="img-smscreen" style="max-width: 130px;margin-top: 2%;border-radius: 80px;">
       <li style="margin-top: 30%;" id="host"><a href="/">首页</a></li>
       <li id="python"><a href="blog_list?type_name=python">Python</a></li>
       <li id="js"><a href="blog_list?type_name=js">Javascript</a></li>
+      <li id="linux"><a href="blog_list?type_name=linux">Linux</a></li>
+      <li id="html_css"><a href="blog_list?type_name=html_css">Html/css</a></li>
+      <li id="mac_os"><a href="blog_list?type_name=mac_os">Mac os</a></li>
       <li id="life"><a href="blog_list?type_name=life">About Life</a></li>
       <li id="about_me"><a href="about_me">关于作者</a></li>
 </ul>
-<div class=" col-lg-10 col-sm-12 col-xs-12" style="float: right;padding: 0;">
+<div class="col-lg-10 col-sm-12 col-xs-12" style="float: right;padding: 0;margin-bottom: 2%">
 {% block define %}
     {% block discuss %}
 
     {% endblock %}
 {% endblock %}
 </div>
-      <script src="/js/bootstrap.min.js"></script>
-      <script src="/js/flat-ui.min.js"></script>
+     {# <script src="/js/bootstrap.min.js"></script>#}
+      <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+{#      <script src="/js/flat-ui.min.js"></script>#}
+      <script src="/js/baidu_share.js"></script>
 </body>
 </html>

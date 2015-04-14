@@ -20,7 +20,8 @@ urlpatterns = patterns('',
     url(r'^js/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.JS_DIR}),
     url(r'^fonts/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.FONTS_DIR}),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_DIR}),
-    (r'^favicon\.ico$', RedirectView.as_view(url='/img/1.ico')),
+    url(r'^favicon\.ico$', RedirectView.as_view(url='/img/1.ico')),
+    url(r'^comments/', include('django_comments.urls')),
 )
 
 # from django.conf import settings

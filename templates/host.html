@@ -1,49 +1,112 @@
 {% extends 'base.html' %}
 {% block define %}
-<section id="host-screen col-md-12 col-lg-12" style="margin: 0;height: 300px;">
-    <img src="/img/login/imac.png" style="margin-left:28%;position: absolute;z-index: 0;max-height: 400px;">
-    <div class="text-center" style="margin-left:28%;padding-top: 80px;margin-top: 1%;
-    height: 270px;width: 480px;color: #ffffff;background-color: #1abc9c;border-radius: 10px;">
-        <h2>Welcome</h2>
+<section id="host-screen" style="margin: 0;height: 410px;">
+<div class="col-md-6 col-lg-6" style="height: 410px;">
+    <div style="float: right">
+        <img src="/img/login/imac.png" style="max-height: 350px;margin-top: 35px;float:right;">
+        <h2 style="position: absolute;z-index: 0;float: right;text-align: center;
+        padding-top: 72px;height: 215px;width: 389px;background: #1abc9c;color: #ffffff;margin-left: 17px;margin-top: 51px;">
+            ShadowWood
+        </h2>
     </div>
+</div>
+ <div class="col-md-6 col-lg-6 text-center" style="height: 410px;">
+  <p style="font-size: 48px;margin-top: 5px;text-align: left">
+            Lately
+  </p>
+  {% for article in articles_lately %}
+      <div style="text-align: left;width: 380px;" class="lately_article">
+       <a href="blogs?article_id={{ article.id }}">
+        <div  class=""></div>
+            <p style="margin-left: 20px;">
+            {{ article.title }}
+            <br/>
+            <span style="color: #bdc3c7">date:{{ article.date }}</span>
+            </p>
+        </a>
+      </div>
+  {% endfor %}
+ </div>
 </section>
-<div class="row" style="margin-left: 1px;margin-right: 1px;margin-top: 110px">
+<div class="row text-center" style="margin-left: 1px;margin-right: 1px;margin-top: 60px;">
   <div class="col-lg-4 col-sm-12 col-xs-12">
-    <div class="thumbnail">
-      <div class="caption">
+      <a href="blog_list?type_name=python" class="thumbnail my-thumbnail">
         <h4>Python</h4>
-        <p>python 后台和web开发技术分享</p>
-        <p class="text-right">
-            <a href="blog_list?type_name=python" class="btn btn-primary" role="button">Let's Go</a>
+        <p>
+            Python开发技术分享
         </p>
-      </div>
-    </div>
+      </a>
   </div>
   <div class="col-lg-4 col-sm-12 col-xs-12">
-    <div class="thumbnail">
-      <div class="caption">
+      <a href="blog_list?type_name=js" class="thumbnail my-thumbnail">
         <h4>Javascript</h4>
-        <p>Js 网页开发分享</p>
-        <p class="text-right"><a href="blog_list?type_name=js" class="btn btn-primary" role="button">Let's Go</a></p>
-      </div>
-    </div>
+        <p>
+            Javascript开发技术分享
+        </p>
+      </a>
   </div>
   <div class="col-lg-4 col-sm-12 col-xs-12">
-    <div class="thumbnail">
-      <div class="caption">
+      <a href="blog_list?type_name=linux" class="thumbnail my-thumbnail">
+        <h4>Linux</h4>
+        <p>
+            Linux开发技术分享
+        </p>
+      </a>
+  </div>
+  <div class="col-lg-4 col-sm-12 col-xs-12">
+      <a href="blog_list?type_name=html_css" class="thumbnail my-thumbnail">
+        <h4>Html/Css</h4>
+        <p>
+            Html/Css开发技术分享
+        </p>
+      </a>
+  </div>
+  <div class="col-lg-4 col-sm-12 col-xs-12">
+      <a href="blog_list?type_name=html_css" class="thumbnail my-thumbnail">
+        <h4>Mac os</h4>
+        <p>
+            Mac os开发技术分享
+        </p>
+      </a>
+  </div>
+  <div class="col-lg-4 col-sm-12 col-xs-12">
+      <a href="blog_list?type_name=life" class="thumbnail my-thumbnail">
         <h4>About Life</h4>
-        <p>生活琐事，心路历程</p>
-        <p class="text-right"><a href="blog_list?type_name=life" class="btn btn-primary" role="button">Let's Go</a></p>
-      </div>
-    </div>
+        <p>
+            生活琐事，心路历程
+        </p>
+      </a>
   </div>
 </div>
-
+<div class="col-md-12 col-lg-12" style="padding-left: 5%;padding-right: 5%;border-top: 1px solid #bdc3c7;margin-top: 20px;">
+    <p style="font-size: 36px;margin-top: 15px;" class="text-center">Recommend</p>
+    {% for article in articles_recommend %}
+    <div class="col-lg-6 col-sm-12 col-xs-12">
+      <a href="blogs?article_id={{ article.id }}" class="thumbnail my-thumbnail-recommend">
+        <p style="font-size: 20px;margin-top: 10px;" class="text-center">{{ article.title }}</p>
+        <p class="text-center">
+            {{ article.keywords }}
+        </p>
+        <p class="text-right" style="margin-right: 15px">
+            <span style="font-size: 15px;margin-right: 5px;">{{ article.date|date:"Y.m.d" }}</span>
+            阅读量:{{ article.read_numbers }}
+        </p>
+      </a>
+  </div>
+    {% endfor %}
+</div>
+<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 footer-title" style="margin-top: 2%;">
+    <footer class="text-center" style="">
+    All contents copyright ShadowWood © 2015
+    </footer>
+</div>
 <script>
   $(document).ready(function(){
       $('#host').addClass('li-active');
-      $('#host_1').addClass('active')
+      $('#host_1').addClass('active');
       $('head').append("<meta name='keywords' content='shadowwood, 博客'>");
+      baidu_share("ShadowWood的博客", "ShdowWood, 博客");
+      $('.carousel').carousel()
   })
 </script>
 {% endblock %}

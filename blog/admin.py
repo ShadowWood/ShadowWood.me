@@ -6,5 +6,3 @@ from models import *
 admin.site.register(BlogList)
 admin.site.register(BlogType)
 admin.site.register(BlogText)
-admin.site.register(Discuss)
-admin.site.register(Answer)
