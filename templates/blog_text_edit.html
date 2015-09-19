@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block define %}
+<style type="text/css" xmlns="http://www.w3.org/1999/html">
+p{  padding-left: 1em;
+    font-size: 16px;}
+br{text-indent:2em}
+.bg-primary{
+    font-size: 18px;
+}
+</style>
+<div class="article-mine" style="border-bottom: 1px solid #bdc3c7;padding-bottom: 2%">
+ <div class="panel my-panel article-body">
+     <h3 class="article-head">
+         在Ubuntu14.04上搭建PPPoE + radius认证服务器
+     </h3>
+     {% if is_authenticated %}
+         <p style="font-size: 12px;text-align: right;">
+             <a role="button" class="btn btn-primary btn-sm" style="text-indent: 0" href="edit_blog?article_id={{ article.id }}">修改</a>
+             <button class="btn btn-danger btn-sm" onclick="delete_article('{{ article.id }}', '{{ article.article_type.type_name }}')">删除</button>
+         </p>
+     {% endif %}
+     <p class="text-right" style="color: #bdc3c7;">
+         keywords: ubuntu, PPPoe, radius, 认证服务器
+         <br/>
+         2015-4-26
+     </p>
+    <p class="bg-primary">
+        前言
+    </p>
+    <p>
+        最近
+    </p>
+
+ </div>
+</div>
+{% endblock %}

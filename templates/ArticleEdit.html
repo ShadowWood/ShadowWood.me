@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ArticleEdit</title>
+    {{ form.media }}
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <link href="/css/vendor/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body style="padding: 0 27% 0 27%">
+<form action="edit_blog" method="post" id="article_mes">
+    {% csrf_token %}
+ <div style="width: 800px;">
+     {% if article %}
+        <input name="article_id" value="{{ article.id }}" style="display: none;">
+    {% endif %}
+    <div class="input-group" style="margin-bottom: 1%">
+        <span class="input-group-addon" id="basic-addon1">标题</span>
+        <input type="text" name="title" id="title" class="form-control"
+               placeholder="title" aria-describedby="basic-addon1"
+                value="{{ article.title }}">
+    </div>
+    <div class="input-group" style="margin-bottom: 1%">
+        <span class="input-group-addon" id="basic-addon1">分类</span>
+        <select name="article_type" id="type" class="form-control select select-primary" style="width: 30%">
+                  {% for type in article_types %}
+                      {% if article.article_type == type %}
+                   <option value="{{ type.id }}" selected>{{ type.type_name }}</option>
+                      {% else %}
+                   <option value="{{ type.id }}">{{ type.type_name }}</option>
+                      {% endif %}
+                  {% endfor %}
+          </select>
+    </div>
+    <div class="input-group" style="margin-bottom: 1%">
+        <span class="input-group-addon" id="basic-addon1">关键词</span>
+        <input type="text" id="keywords" name="keywords" class="form-control"
+               placeholder="keywords" aria-describedby="basic-addon1" value="{{ article.keywords }}">
+    </div>
+    <div class="input-group" style="margin-bottom: 1%">
+        <span class="input-group-addon" id="basic-addon1">简介</span>
+        <textarea id="introduction" name="introduction" class="form-control" placeholder="introduction" aria-describedby="basic-addon1">{{ article.introduction }}</textarea>
+    </div>
+     {% if article %}
+     <script>
+        $('#article_type').val('{{ article.type }}');
+     </script>
+     {% endif %}
+ </div>
+ <br/>
+ <div class="edit-area">
+    {{ form }}
+ </div>
+</form>
+{% if article %}
+<div style="display: none" id="article_first">
+    {{ article.text | safe }}
+</div>
+<script>
+    id_content.ready(function(){
+       var html = $('#article_first').html();	
+       id_content.setContent(html);
+       $('#article_first').remove();
+    });
+</script>
+{% endif %}
+<div>
+    <button style="width: 800px;height: 30px;margin-top: 3px;" id="submit_article">提交</button>
+</div>    
+</body>
+</html>

@@ -4,6 +4,7 @@ from django.contrib import admin
 import settings
 from django.views.generic.base import RedirectView
 from blog.views import *
+import blog.urls
 
 urlpatterns = patterns('',
     # Examples:
@@ -12,16 +13,15 @@ urlpatterns = patterns('',
 
     url(r'^abc_shadow_159357/', include(admin.site.urls)),
     url(r'^$', host),
-    url(r'^blog_list$', blog_list),
-    url(r'^blogs$', blogs_get),
-    url(r'^about_me$', about_me),
+    url(r'^', include(blog.urls)),
+    url(r'^ueditor/', include('DjangoUeditor.urls')),
     url(r'^css/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.CSS_DIR}),
     url(r'^img/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.IMG_DIR}),
     url(r'^js/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.JS_DIR}),
     url(r'^fonts/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.FONTS_DIR}),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_DIR}),
     url(r'^favicon\.ico$', RedirectView.as_view(url='/img/1.ico')),
-    url(r'^comments/', include('django_comments.urls')),
+   # url(r'^comments/', include('django_comments.urls')),
 )
 
 # from django.conf import settings

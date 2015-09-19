@@ -21,7 +21,7 @@ SECRET_KEY = '_%&_kl%a-lb#t90q33_j!u#p*psco^*w2$w4nor5=0dpx2$t7)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'django_comments',
+    'DjangoUeditor',
     'blog',
 )
 
@@ -60,32 +60,26 @@ WSGI_APPLICATION = 'Myblog.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
-DB_ENGINE = 'django.db.backends.postgresql_psycopg2'
-DB_NAME = 'blog'
-DB_USER = 'postgres'                      # Not used with sqlite3.
-DB_PASSWORD = 'GDBDYL886'                  # Not used with sqlite3.
-DB_HOST = 'localhost'                      # Set to empty string for localhost. Not used with sqlite3.
-DB_PORT = '5433'
-
-
 DATABASES = {
     'default': {
-        'ENGINE':   DB_ENGINE,
-        'NAME':     DB_NAME,
-        'USER':     DB_USER,
-        'PASSWORD': DB_PASSWORD,
-        'HOST':     DB_HOST,
-        'PORT':     DB_PORT,
-        }
-    }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+}
 
+import mongoengine
+
+SESSION_ENGINE = 'mongoengine.django.sessions'
+
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 

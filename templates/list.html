@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 {% block define %}
-   <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12 list-width-mine" style="margin-left: 10%;">
+   <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 list-width-mine">
 {% for item in items %}
      <div class="col-md-12 col-lg-12 my-panel" style="margin-top: 3%;">
-        <a href="blogs?article_id={{  item.id }}" class="text-center">
-            <h6 class="my-heading" style="font-size: 20px;">{{ item.title }}</h6>
+        <a href="blog?article_id={{  item.id }}" class="text-center">
+            <h6 class="my-heading">{{ item.title }}</h6>
         </a>
-        <p style="font-size: 16px;">
+        <p class="intro-text">
             {{ item.introduction }}
         </p>
-        <p style="color: #bdc3c7;text-align: right">
+        <p class="read-number">
            read:{{ item.read_numbers }}
            <br/>
-           date: {{ item.date|date:"Y-m-d" }} | By ShadowWood
+           date: {{ item.create_date|date:"Y-m-d" }} | By ShadowWood
         </p>
-     </div>
+        </div>
 {% endfor %}
    </div>
    {% if items.has_previous or items.has_next %}
@@ -44,7 +44,9 @@
        $(document).ready(function(){
            $('#{{ type }}').addClass('li-active');
            $('#{{ type }}_1').addClass('active');
-           baidu_share("ShadowWood的博客－－文章分享", "ShadowWood, 博客, {{ type }}");
+           if(window.screen.width > 1099){
+               baidu_share("ShadowWood的博客－－文章分享", "ShadowWood, 博客, {{ type }}");
+           }
        })
     </script>
   {% endif %}

@@ -6,7 +6,10 @@
         <img src="/img/login/imac.png" style="max-height: 350px;margin-top: 35px;float:right;">
         <h2 style="position: absolute;z-index: 0;float: right;text-align: center;
         padding-top: 72px;height: 215px;width: 389px;background: #1abc9c;color: #ffffff;margin-left: 17px;margin-top: 51px;">
-            ShadowWood
+            &lt;/
+            Shadow
+            &gt;
+{#            <span style="color: #34495e">&gt;</span>#}
         </h2>
     </div>
 </div>
@@ -16,12 +19,12 @@
   </p>
   {% for article in articles_lately %}
       <div style="text-align: left;width: 380px;" class="lately_article">
-       <a href="blogs?article_id={{ article.id }}">
+       <a href="blog?article_id={{ article.id }}">
         <div  class=""></div>
             <p style="margin-left: 20px;">
             {{ article.title }}
             <br/>
-            <span style="color: #bdc3c7">date:{{ article.date }}</span>
+            <span style="color: #bdc3c7">date:{{ article.create_date }}</span>
             </p>
         </a>
       </div>
@@ -33,7 +36,7 @@
       <a href="blog_list?type_name=python" class="thumbnail my-thumbnail">
         <h4>Python</h4>
         <p>
-            Python开发技术分享
+            人生苦短，我用python
         </p>
       </a>
   </div>
@@ -41,15 +44,7 @@
       <a href="blog_list?type_name=js" class="thumbnail my-thumbnail">
         <h4>Javascript</h4>
         <p>
-            Javascript开发技术分享
-        </p>
-      </a>
-  </div>
-  <div class="col-lg-4 col-sm-12 col-xs-12">
-      <a href="blog_list?type_name=linux" class="thumbnail my-thumbnail">
-        <h4>Linux</h4>
-        <p>
-            Linux开发技术分享
+            如今无所不能的强大语言
         </p>
       </a>
   </div>
@@ -57,15 +52,23 @@
       <a href="blog_list?type_name=html_css" class="thumbnail my-thumbnail">
         <h4>Html/Css</h4>
         <p>
-            Html/Css开发技术分享
+            万维网的核心语言
         </p>
       </a>
   </div>
   <div class="col-lg-4 col-sm-12 col-xs-12">
-      <a href="blog_list?type_name=html_css" class="thumbnail my-thumbnail">
-        <h4>Mac os</h4>
+      <a href="blog_list?type_name=linux" class="thumbnail my-thumbnail">
+        <h4>Linux</h4>
         <p>
-            Mac os开发技术分享
+            Linux系统配置分享
+        </p>
+      </a>
+  </div>
+  <div class="col-lg-4 col-sm-12 col-xs-12">
+      <a href="blog_list?type_name=mac_os" class="thumbnail my-thumbnail">
+        <h4>Mac OS</h4>
+        <p>
+            Mac OS系统配置分享
         </p>
       </a>
   </div>
@@ -82,13 +85,15 @@
     <p style="font-size: 36px;margin-top: 15px;" class="text-center">Recommend</p>
     {% for article in articles_recommend %}
     <div class="col-lg-6 col-sm-12 col-xs-12">
-      <a href="blogs?article_id={{ article.id }}" class="thumbnail my-thumbnail-recommend">
-        <p style="font-size: 20px;margin-top: 10px;" class="text-center">{{ article.title }}</p>
-        <p class="text-center">
-            {{ article.keywords }}
-        </p>
-        <p class="text-right" style="margin-right: 15px">
-            <span style="font-size: 15px;margin-right: 5px;">{{ article.date|date:"Y.m.d" }}</span>
+      <a href="blog?article_id={{ article.id }}" class="thumbnail my-thumbnail-recommend">
+        <div style="height: 130px;">
+            <p style="font-size: 20px;margin-top: 10px;" class="text-center">{{ article.title }}</p>
+            <p class="text-center">
+                {{ article.keywords }}
+            </p>
+        </div>
+        <p class="text-right" style="margin-right: 15px;">
+            <span style="font-size: 15px;margin-right: 5px;">{{ article.create_date|date:"Y.m.d" }}</span>
             阅读量:{{ article.read_numbers }}
         </p>
       </a>
@@ -105,8 +110,10 @@
       $('#host').addClass('li-active');
       $('#host_1').addClass('active');
       $('head').append("<meta name='keywords' content='shadowwood, 博客'>");
-      baidu_share("ShadowWood的博客", "ShdowWood, 博客");
-      $('.carousel').carousel()
+      $('.carousel').carousel();
+      if($('body').width() > 1099){
+          baidu_share("ShadowWood的博客", "ShdowWood, 博客");
+      }
   })
 </script>
 {% endblock %}

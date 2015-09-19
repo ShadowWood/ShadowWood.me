@@ -1,85 +1,133 @@
 {% extends 'base.html' %}
 {% block define %}
-<style type="text/css">
-p{text-indent:2em;
-  font-size: 15px;}
+<style type="text/css" xmlns="http://www.w3.org/1999/html">
+p{padding-left:1em;
+  font-size: 16px;}
 br{text-indent:2em}
+.bg-primary{
+    font-size: 18px;
+}
+a, blockquote{
+    word-break: break-word; /* 文本行的任意字内断开 */
+    word-wrap: break-word; /* IE */
+    white-space: -moz-pre-wrap; /* Mozilla */
+    white-space: -hp-pre-wrap; /* HP printers */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: pre; /* CSS2 */
+    white-space: pre-wrap; /* CSS 2.1 */
+    white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+}
 </style>
-<div class="article-mine" style="border-bottom: 1px solid #bdc3c7;padding-bottom: 2%">
- <div class="panel my-panel" style="padding-left: 10%;padding-right: 10%;">
-     <h3 class="text-center">{{ article.title }}</h3>
-     <p class="text-right" style="color: #bdc3c7;">
+<div class="article-mine">
+ <div class="panel my-panel article-body">
+     <h3 class="text-center article-head">
+         {{ article.title }}
+     </h3>
+     {% if is_authenticated %}
+         <p class="operation-group">
+             <a role="button" class="btn btn-primary btn-sm" style="text-indent: 0" href="edit_blog?article_id={{ article.id }}">修改</a>
+             <button class="btn btn-danger btn-sm" onclick="delete_article('{{ article.id }}', '{{ article.article_type.type_name }}')">删除</button>
+         </p>
+     {% endif %}
+     <p class="text-right">
          keywords: {{ article.keywords }}
          <br/>
-         {{ article.date }}
+         {{ article.create_date }}
      </p>
-     {{ item | safe}}
+     {{ article.text | safe }}
  </div>
 </div>
+{% block discuss %}
+   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment-mine">
+    <h4 class="text-center">Comments</h4>
+    <div class="panel my-panel">
+        <div class="panel-body">
+           <form method="post" action="add_new_comment" id="comment_form" enctype="multipart/form-data">
+               {% csrf_token %}
+            <div class="col-lg-12 col-md-12" style="padding: 0">
+                <p class="hide" id="comment_warning">请完善提交的信息！</p>
+                {% if is_authenticated %}
+                    <input type="text" class="hide" name="author_if" id="author_id" value="w308346420"/>
+                {% endif %}
+                <input type="text" class="hide" name="article_id" value="{{ article.id }}"/>
+                <input type="text" id="comment_name" class="input form-control col-lg-8 col-md-8 input-base" name="name" placeholder="输入您的昵称"/>
+                <input type="email" id="comment_e_mail" class="input form-control col-lg-8 col-md-8 input-base" name="e_mail" placeholder="输入您的邮箱(可选)"/>
+            </div>
+            <textarea class="form-control col-lg-12 col-md-12 input-comment" id="comment_content" name="content" placeholder="输入评论信息"></textarea>
+           </form>
+            <button class="btn btn-primary col-lg-12 col-md-12 col-sm-12 col-xs-12" onclick="add_new_comment()">发表新的评论</button>
+        </div>
+    </div>
+    {% for comment in article.comments %}
+    <div class="panel my-panel col-lg-12 col-md-12 col-sm-12 col-xs-12 comment-panel" id="comment-reply-{{ comment.comment_id }}">
+        <div class="panel-body" id="comment-{{ comment.comment_id }}">
+            <p>
+                {{ comment.name }}
+                <span style="margin-left: 2%;color: #bdc3c7">{{ comment.create_date }}</span>
+            </p>
+            <p>
+                {{ comment.content }}
+            </p>
+            {% if is_authenticated %}
+             <button onclick="delete_comment('{{ article.id }}', '{{ comment.comment_id }}')" class="btn btn-danger btn-xs btn-delete">删除</button>
+            {% endif %}
+            <button class="btn btn-primary btn-xs btn-reply" onclick="add_reply_form('{{ comment.comment_id }}', false, 'comment-{{ comment.comment_id }}')">回复</button>
+        </div>
+            {% for reply in comment.replies %}
+        <div class="panel-body reply-panel-body" id="reply-{{ reply.reply_id }}">
+            <p>
+               {{ reply.name }}<span class="reply-span">回复</span>
+                {% if reply.to_reply_name %}
+                   {{ reply.to_reply_name }}
+                {% else %}
+                   {{ comment.name }}
+                {% endif %}
+                <span class="reply-date">{{ reply.create_date }}</span>
+            </p>
+            <p>
+                {{ reply.content }}
+            </p>
+            {% if is_authenticated %}
+             <button class="btn btn-danger btn-xs btn-delete" onclick="delete_reply('{{ article.id }}', '{{ comment.comment_id }}', '{{ reply.reply_id }}')">删除</button>
+            {% endif %}
+            <button class="btn btn-primary btn-xs btn-reply" onclick="add_reply_form('{{ comment.comment_id }}', '{{ reply.name }}', 'reply-{{ reply.reply_id }}')">回复</button>
+        </div>
+            {% endfor %}
+    </div>
+     {% endfor %}
+   </div>
+    <div class="panel col-lg-12 col-md-12 col-sm-12 col-xs-12 hide" id="reply_panel">
+        <div class="panel-body" style="margin-top: 2px;">
+            <form method="post" action="add_new_reply" id="reply_form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="col-lg-12 col-md-12" style="padding: 0">
+                    <p class="hide" id="reply_warning">请完善提交的信息！</p>
+                    {% if is_authenticated %}
+                    <input type="text" class="hide" name="author_if" id="author_if" value="w308346420"/>
+                    {% endif %}
+                    <input type="text" class="hide" name="article_id" value="{{ article.id }}"/>
+                    <input type="text" class="hide" name="comment_id" id="to_comment_id" value=""/>
+                    <input type="text" class="hide" name="to_reply_name" id="to_reply_name" value=""/>
+                    <input type="text" id="reply_name" class="input form-control col-lg-8 col-md-8 input-base" name="name" placeholder="输入您的昵称"/>
+                    <input type="email" id="reply_e_mail" class="input form-control col-lg-8 col-md-8 input-base" name="e_mail" placeholder="输入您的邮箱(可选)"/>
+                </div>
+                <textarea class="form-control col-lg-12 col-md-12 col-sm-12 input-comment" id="reply_content" name="content" placeholder="输入回复信息"></textarea>
+            </form>
+            <button class="btn btn-primary col-lg-12 col-md-12 col-sm-12 col-xs-12" onclick="add_new_reply()">回复</button>
+            <button class="btn btn-default col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 2px;" onclick="hidden_reply()">收起</button>
+        </div>
+    </div>
+{% endblock %}
     {% if article %}
      <script>
        $(document).ready(function(){
           $('head').append("<meta name='keywords' content='{{ article.keywords }}'>");
-          $('#{{ article.type.type_name }}').addClass('li-active');
-          baidu_share("ShadowWood的博客－－{{ article.title }}", "ShadowWood, 博客, {{ article.keywords }}");
+          $('#{{ article.article_type.type_name }}').addClass('li-active');
+          if($('body').width() > 1099){
+              baidu_share("ShadowWood的博客－－{{ article.title }}", "ShadowWood, 博客, {{ article.keywords }}");
+          }
        });
      </script>
     {% endif %}
-{#{% load comments %}#}
-{#{% block discuss %}#}
-{#   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding: 0 15% 0 15%;margin-top: 2%">#}
-{#    <h4 style="text-align: center">Comments</h4>#}
-{#    <div class="panel my-panel">#}
-{#        <div class="panel-body">#}
-{#            <p>#}
-{#                评论者#}
-{#                <span style="margin-left: 2%;color: #bdc3c7">{{ article.date }}</span>#}
-{#            </p>#}
-{#            <p>#}
-{#                这是个测试评论！！！！！#}
-{#            </p>#}
-{#            <a class="" href="#" style="float: right;font-size: 14px;">回复</a>#}
-{#        </div>#}
-{#        <div class="panel-body" style="border-top: 1px solid #1abc9c">#}
-{#            <p>#}
-{#                评论者#}
-{#                <span style="margin-left: 2%;color: #bdc3c7">{{ article.date }}</span>#}
-{#            </p>#}
-{#            <p>#}
-{#                这是个测试评论！！！！！#}
-{#            </p>#}
-{#            <a class="" href="#" style="float: right;font-size: 14px;">回复</a>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="panel my-panel">#}
-{#        <div class="panel-body">#}
-{#            <p>#}
-{#                评论者#}
-{#                <span style="margin-left: 2%;color: #bdc3c7">{{ article.date }}</span>#}
-{#            </p>#}
-{#            <p>#}
-{#                这是个测试评论！！！！！#}
-{#            </p>#}
-{#            <a class="" href="#" style="float: right">回复</a>#}
-{#        </div>#}
-{#    </div>#}
-{#    <div class="panel my-panel">#}
-{#        <div class="panel-body">#}
-{#            <p>#}
-{#                评论者#}
-{#                <span style="margin-left: 2%;color: #bdc3c7">{{ article.date }}</span>#}
-{#            </p>#}
-{#            <p>#}
-{#                这是个测试评论！！！！！#}
-{#            </p>#}
-{#            <a class="" href="#" style="float: right">回复</a>#}
-{#        </div>#}
-{#    </div>#}
-{#    <button class="btn btn-primary" style="float: right">发表新的评论</button>#}
-{#    <div >#}
-{##}
-{#    </div>#}
-{#   </div>#}
-{##}
-{#{% endblock %}#}
 {% endblock %}

@@ -1,0 +1,77 @@
+*** Starting uWSGI 2.0.10 (64bit) on [Wed Apr 29 22:59:41 2015] ***
+compiled with version: 4.8.2 on 30 March 2015 23:55:08
+os: Linux-3.13.0-32-generic #57-Ubuntu SMP Tue Jul 15 03:51:08 UTC 2014
+nodename: iZ626vkz2yrZ
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /var/local/shadowwood/1/blog
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your processes number limit is 7770
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address :9090 fd 3
+Python version: 2.7.6 (default, Mar 22 2014, 23:03:41)  [GCC 4.8.2]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x1f7bd90
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 363840 bytes (355 KB) for 4 cores
+*** Operational MODE: preforking ***
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 27127)
+spawned uWSGI worker 1 (pid: 27128, cores: 1)
+spawned uWSGI worker 2 (pid: 27129, cores: 1)
+spawned uWSGI worker 3 (pid: 27130, cores: 1)
+spawned uWSGI worker 4 (pid: 27131, cores: 1)
+Wed Apr 29 23:00:12 2015 - uWSGI worker 3 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Apr 29 23:00:12 2015 - uWSGI worker 4 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Apr 29 23:00:12 2015 - uWSGI worker 2 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Wed Apr 29 23:00:12 2015 - uWSGI worker 1 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+*** Starting uWSGI 2.0.10 (64bit) on [Tue May 19 17:13:22 2015] ***
+compiled with version: 4.8.2 on 30 March 2015 23:55:08
+os: Linux-3.13.0-32-generic #57-Ubuntu SMP Tue Jul 15 03:51:08 UTC 2014
+nodename: iZ626vkz2yrZ
+machine: x86_64
+clock source: unix
+detected number of CPU cores: 1
+current working directory: /var/local/shadowwood/1/blog
+detected binary path: /usr/local/bin/uwsgi
+!!! no internal routing support, rebuild with pcre support !!!
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your processes number limit is 7770
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address :8000 fd 3
+Python version: 2.7.6 (default, Mar 22 2014, 23:03:41)  [GCC 4.8.2]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x1960e00
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 363840 bytes (355 KB) for 4 cores
+*** Operational MODE: preforking ***
+ImportError: Import by filename is not supported.
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 2856)
+spawned uWSGI worker 1 (pid: 2857, cores: 1)
+spawned uWSGI worker 2 (pid: 2858, cores: 1)
+spawned uWSGI worker 3 (pid: 2859, cores: 1)
+spawned uWSGI worker 4 (pid: 2860, cores: 1)
+--- no python application found, check your startup logs for errors ---
+[pid: 2860|app: -1|req: -1/1] 125.71.229.19 () {44 vars in 947 bytes} [Tue May 19 17:13:27 2015] GET /edit_blog?article_id=555af8523e6ea37d0cb0e330 => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 2859|app: -1|req: -1/2] 125.71.229.19 () {44 vars in 947 bytes} [Tue May 19 17:13:28 2015] GET /edit_blog?article_id=555af8523e6ea37d0cb0e330 => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+Tue May 19 17:13:32 2015 - uWSGI worker 4 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Tue May 19 17:13:32 2015 - uWSGI worker 3 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Tue May 19 17:13:32 2015 - uWSGI worker 2 screams: UAAAAAAH my master disconnected: i will kill myself !!!
