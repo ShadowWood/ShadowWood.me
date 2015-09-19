@@ -1,121 +1,119 @@
 {% extends 'base.html' %}
 {% block define %}
-<section id="host-screen" style="margin: 0;height: 410px;">
-<div class="col-md-6 col-lg-6" style="height: 410px;">
-    <div style="float: right">
-        <img src="/img/login/imac.png" style="max-height: 350px;margin-top: 35px;float:right;">
-        <h2 style="position: absolute;z-index: 0;float: right;text-align: center;
-        padding-top: 72px;height: 215px;width: 389px;background: #1abc9c;color: #ffffff;margin-left: 17px;margin-top: 51px;">
-            &lt;/
-            Shadow
-            &gt;
-{#            <span style="color: #34495e">&gt;</span>#}
+  <section id="host-screen">
+    <div class="col-md-6 col-lg-6 web-title-screen">
+      <div style="float: right">
+        <img class="web-title-background" src="/img/login/imac.png">
+        <h2 class="web-title">
+          &lt;/
+          Shadow
+          &gt;
         </h2>
-    </div>
-</div>
- <div class="col-md-6 col-lg-6 text-center" style="height: 410px;">
-  <p style="font-size: 48px;margin-top: 5px;text-align: left">
-            Lately
-  </p>
-  {% for article in articles_lately %}
-      <div style="text-align: left;width: 380px;" class="lately_article">
-       <a href="blog?article_id={{ article.id }}">
-        <div  class=""></div>
-            <p style="margin-left: 20px;">
-            {{ article.title }}
-            <br/>
-            <span style="color: #bdc3c7">date:{{ article.create_date }}</span>
-            </p>
-        </a>
       </div>
-  {% endfor %}
- </div>
-</section>
-<div class="row text-center" style="margin-left: 1px;margin-right: 1px;margin-top: 60px;">
-  <div class="col-lg-4 col-sm-12 col-xs-12">
+    </div>
+    <div class="col-md-6 col-lg-6 text-center lately-list">
+      <p class="lately-title">
+        Lately
+      </p>
+      {% for article in articles_lately %}
+        <div class="lately_article">
+          <a href="blog?article_id={{ article.id }}">
+            <div  class=""></div>
+            <p style="margin-left: 20px;">
+              {{ article.title }}
+              <br/>
+              <span style="color: #bdc3c7">date:{{ article.create_date }}</span>
+            </p>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+  <div class="row text-center theme-box">
+    <div class="col-lg-4 col-sm-12 col-xs-12">
       <a href="blog_list?type_name=python" class="thumbnail my-thumbnail">
         <h4>Python</h4>
         <p>
-            人生苦短，我用python
+          人生苦短，我用python
         </p>
       </a>
-  </div>
-  <div class="col-lg-4 col-sm-12 col-xs-12">
+    </div>
+    <div class="col-lg-4 col-sm-12 col-xs-12">
       <a href="blog_list?type_name=js" class="thumbnail my-thumbnail">
         <h4>Javascript</h4>
         <p>
-            如今无所不能的强大语言
+          如今无所不能的强大语言
         </p>
       </a>
-  </div>
-  <div class="col-lg-4 col-sm-12 col-xs-12">
+    </div>
+    <div class="col-lg-4 col-sm-12 col-xs-12">
       <a href="blog_list?type_name=html_css" class="thumbnail my-thumbnail">
         <h4>Html/Css</h4>
         <p>
-            万维网的核心语言
+          万维网的核心语言
         </p>
       </a>
-  </div>
-  <div class="col-lg-4 col-sm-12 col-xs-12">
+    </div>
+    <div class="col-lg-4 col-sm-12 col-xs-12">
       <a href="blog_list?type_name=linux" class="thumbnail my-thumbnail">
         <h4>Linux</h4>
         <p>
-            Linux系统配置分享
+          Linux系统配置分享
         </p>
       </a>
-  </div>
-  <div class="col-lg-4 col-sm-12 col-xs-12">
+    </div>
+    <div class="col-lg-4 col-sm-12 col-xs-12">
       <a href="blog_list?type_name=mac_os" class="thumbnail my-thumbnail">
         <h4>Mac OS</h4>
         <p>
-            Mac OS系统配置分享
+          Mac OS系统配置分享
         </p>
       </a>
-  </div>
-  <div class="col-lg-4 col-sm-12 col-xs-12">
+    </div>
+    <div class="col-lg-4 col-sm-12 col-xs-12">
       <a href="blog_list?type_name=life" class="thumbnail my-thumbnail">
         <h4>About Life</h4>
         <p>
-            生活琐事，心路历程
+          生活琐事，心路历程
         </p>
       </a>
+    </div>
   </div>
-</div>
-<div class="col-md-12 col-lg-12" style="padding-left: 5%;padding-right: 5%;border-top: 1px solid #bdc3c7;margin-top: 20px;">
-    <p style="font-size: 36px;margin-top: 15px;" class="text-center">Recommend</p>
+  <div class="col-md-12 col-lg-12 recommend-list">
+    <p class="text-center recommend-title">Recommend</p>
     {% for article in articles_recommend %}
-    <div class="col-lg-6 col-sm-12 col-xs-12">
-      <a href="blog?article_id={{ article.id }}" class="thumbnail my-thumbnail-recommend">
-        <div style="height: 130px;">
-            <p style="font-size: 20px;margin-top: 10px;" class="text-center">{{ article.title }}</p>
+      <div class="col-lg-6 col-sm-12 col-xs-12">
+        <a href="blog?article_id={{ article.id }}" class="thumbnail my-thumbnail-recommend">
+          <div style="height: 130px;">
+            <p class="text-center recommend-article-title">{{ article.title }}</p>
             <p class="text-center">
-                {{ article.keywords }}
+              {{ article.keywords }}
             </p>
-        </div>
-        <p class="text-right" style="margin-right: 15px;">
-            <span style="font-size: 15px;margin-right: 5px;">{{ article.create_date|date:"Y.m.d" }}</span>
+          </div>
+          <p class="text-right" style="margin-right: 15px;">
+            <span class="recommend-read-number">{{ article.create_date|date:"Y.m.d" }}</span>
             阅读量:{{ article.read_numbers }}
-        </p>
-      </a>
-  </div>
+          </p>
+        </a>
+      </div>
     {% endfor %}
-</div>
-<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 footer-title" style="margin-top: 2%;">
+  </div>
+  <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 footer-title" style="margin-top: 2%;">
     <footer class="text-center" style="">
-    All contents copyright ShadowWood © 2015
+      All contents copyright ShadowWood © 2015
     </footer>
-</div>
-<script>
-  $(document).ready(function(){
+  </div>
+  <script>
+    $(document).ready(function(){
       $('#host').addClass('li-active');
       $('#host_1').addClass('active');
       $('head').append("<meta name='keywords' content='shadowwood, 博客'>");
       $('.carousel').carousel();
       if($('body').width() > 1099){
-          baidu_share("ShadowWood的博客", "ShdowWood, 博客");
+        baidu_share("ShadowWood的博客", "ShdowWood, 博客");
       }
-  })
-</script>
+    })
+  </script>
 {% endblock %}
 </body>
 </html>

@@ -359,3 +359,75 @@ pre{
     color: #bdc3c7;
     text-align: right
 }
+
+.web-title{
+    position: absolute;
+    z-index: 0;
+    float: right;
+    text-align: center;
+    padding-top: 72px;
+    height: 215px;
+    width: 389px;
+    background: #1abc9c;
+    color: #ffffff;
+    margin-left: 17px;
+    margin-top: 51px;
+}
+
+.web-title-background{
+    max-height: 350px;
+    margin-top: 35px;
+    float:right;
+}
+
+.lately-list{
+    height: 410px;
+}
+
+.lately-title{
+    font-size: 48px;
+    margin-top: 5px;
+    text-align: left
+}
+
+.lately-article-title{
+    text-align: left;
+    width: 380px;
+}
+
+.theme-box{
+    margin-left: 1px;
+    margin-right: 1px;
+    margin-top: 60px;
+}
+
+.recommend-list{
+    padding-left: 5%;
+    padding-right: 5%;
+    border-top: 1px solid #bdc3c7;
+    margin-top: 20px;
+}
+
+.recommend-title{
+    font-size: 36px;
+    margin-top: 15px;
+}
+
+.recommend-article-title{
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.recommend-read-number{
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+#host-screen{
+    margin: 0;
+    height: 410px;
+}
+
+.web-title-screen{
+    height: 410px;
+}
