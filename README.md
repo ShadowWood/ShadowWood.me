@@ -1,2 +1,2 @@
 # ShadowWood.me
-blog, django+bootstarp+flat-ui+postgresql+nginx+uwsgi
+blog, django+bootstarp+flat-ui+mongoDB+nginx+uwsgi
